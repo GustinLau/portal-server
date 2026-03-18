@@ -1,0 +1,27 @@
+{
+  "name": "portal-server",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/GustinLau/portal-server#readme",
+  "bugs": {
+    "url": "https://github.com/GustinLau/portal-server/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GustinLau/portal-server.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "dotenv -e .env -- node index.js"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.20",
+    "dotenv-cli": "^11.0.0",
+    "express": "^5.2.1",
+    "multer": "^2.1.1",
+    "winston": "^3.19.0"
+  }
+}

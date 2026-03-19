@@ -18,6 +18,7 @@
     "start": "dotenv -e .env -- node index.js"
   },
   "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.59.0",
     "dayjs": "^1.11.20",
     "dotenv-cli": "^11.0.0",
     "express": "^5.2.1",

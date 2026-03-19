@@ -7,6 +7,7 @@
 - 基于Express框架构建
 - 支持文件上传（markdown和excel文件）
 - 健康检查接口
+- 分析接口（转发到分析服务器）
 - 请求token校验
 - 完善的日志记录
 
@@ -23,6 +24,7 @@
 ```
 portal-server/
 ├── src/
+│   ├── feishu/         # 飞书客户端配置
 │   ├── logger/         # 日志配置
 │   ├── server/         # 服务器配置和路由
 │   └── utils/          # 工具函数
@@ -46,7 +48,10 @@ npm install
 
 ```bash
 # 服务器端口
-SERVER_PORT=8000
+SERVER_PORT=18285
+
+# 分析服务器地址（分析接口转发目标）
+ANALYSIS_SERVER=http://localhost:8080
 ```
 
 ### 3. 启动服务器
@@ -55,7 +60,7 @@ SERVER_PORT=8000
 npm start
 ```
 
-服务器启动后会监听配置的端口，默认端口为8000。
+服务器启动后会监听配置的端口，默认端口为18285。
 
 ## API接口
 
@@ -72,7 +77,7 @@ npm start
   }
   ```
 
-### 文件上传（已注释）
+### 文件上传
 
 - **URL**: `/api/dispatch/file`
 - **方法**: POST
@@ -88,6 +93,14 @@ npm start
   }
   ```
 
+### 分析接口
+
+- **URL**: `/api/analysis/analyze`
+- **方法**: POST
+- **描述**: 将请求转发到API服务器进行分析
+- **请求体**: 与API服务器要求的格式一致
+- **响应**: API服务器的响应结果
+
 ## 请求校验
 
 所有API请求（除了健康检查）都需要在请求header中携带`token`参数，否则会返回401错误：
@@ -95,7 +108,7 @@ npm start
 ```json
 {
   "success": false,
-  "message": "请求header中缺少token参数"
+  "message": "token错误"
 }
 ```
 
